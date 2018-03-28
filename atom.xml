@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.slurse.com/"/>
-  <updated>2018-03-18T02:39:34.616Z</updated>
+  <updated>2018-03-28T09:13:06.233Z</updated>
   <id>http://www.slurse.com/</id>
   
   <author>
@@ -17,18 +17,18 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>存储器</title>
-    <link href="http://www.slurse.com/2018/03/17/2018-03-17/"/>
-    <id>http://www.slurse.com/2018/03/17/2018-03-17/</id>
-    <published>2018-03-17T08:50:38.000Z</published>
-    <updated>2018-03-18T02:39:34.616Z</updated>
+    <title>Relative Path Overwrite Attack</title>
+    <link href="http://www.slurse.com/2018/03/28/Relative-Path-Overwrite-Attack/"/>
+    <id>http://www.slurse.com/2018/03/28/Relative-Path-Overwrite-Attack/</id>
+    <published>2018-03-28T08:11:42.000Z</published>
+    <updated>2018-03-28T09:13:06.233Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>这是摘要<br><a id="more"></a><br>这是正文<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"x"</span>);</span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>RPO 相对路径覆盖攻击, 可以利用相对URL路径<code>覆盖目标文件</code>或<code>注入恶意CSS</code></p><p>RPO利用基于浏览器和Web容器的差异导致, 在相对路径处, 可以引入我们可控的任何文件。<br><a id="more"></a></p><blockquote><p>第二届强网杯 Share your mind</p></blockquote><p><a href="http://39.107.33.96:20000/index.php/add" target="_blank" rel="noopener">http://39.107.33.96:20000/index.php/add</a><br><img src="/images/15222264648201.jpg" alt=""></p><p><a href="http://39.107.33.96:20000/index.php/add/..%2f" target="_blank" rel="noopener">http://39.107.33.96:20000/index.php/add/..%2f</a><br><img src="/images/15222264223256.jpg" alt=""></p><p>对于<code>php</code>来说, PHP获取到的请求是解码之后的url,也就是 <code>http://39.107.33.96:20000/index.php/add/../</code>, 目录穿越到index.php。</p><p>对于浏览器来说, 浏览器无法解码这串url, 请求相对路径的资源也就变成了<code>http://39.107.33.96:20000/index.php/add/..%2f/static/js/jquery.min.js</code>,<br>但是这串对于PHP rewrite来说, 不存在这个<code>..%2f/static/js/jquery.min.js</code>路径,<br>所以就会读取到了<code>http://39.107.33.96:20000/index.php/add/</code> 这个路径里的内容。</p>]]></content>
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt;这是摘要&lt;br&gt;
+      &lt;p&gt;RPO 相对路径覆盖攻击, 可以利用相对URL路径&lt;code&gt;覆盖目标文件&lt;/code&gt;或&lt;code&gt;注入恶意CSS&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;RPO利用基于浏览器和Web容器的差异导致, 在相对路径处, 可以引入我们可控的任何文件。&lt;br&gt;
     
     </summary>
     
