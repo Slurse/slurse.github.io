@@ -3,8 +3,8 @@
 <blockquote>
 <p>第二届强网杯 Share your mind</p>
 </blockquote>
-<p><a href="http://39.107.33.96:20000/index.php/add" target="_blank" rel="noopener">http://39.107.33.96:20000/index.php/add</a><br><img src="https://i.loli.net/2018/03/29/5abc40c5705bd.jpg" alt=""></p>
-<p><a href="http://39.107.33.96:20000/index.php/add/..%2f" target="_blank" rel="noopener">http://39.107.33.96:20000/index.php/add/..%2f</a><br><img src="https://i.loli.net/2018/03/29/5abc40c5c42e6.jpg" alt=""></p>
+<p><code>http://39.107.33.96:20000/index.php/add</code><br><img src="https://i.loli.net/2018/03/29/5abc40c5705bd.jpg" alt=""></p>
+<p><code>http://39.107.33.96:20000/index.php/add/..%2f</code><br><img src="https://i.loli.net/2018/03/29/5abc40c5c42e6.jpg" alt=""></p>
 <p>对于<code>php</code>来说, PHP获取到的请求是解码之后的url,也就是 <code>http://39.107.33.96:20000/index.php/add/../</code>, 目录穿越到index.php。</p>
 <p>对于<code>浏览器</code>来说, 浏览器无法解码这串url, 请求相对路径的资源也就变成了<code>http://39.107.33.96:20000/index.php/add/..%2f/static/js/jquery.min.js</code>,<br>但是这串对于PHP rewrite来说, 不存在这个<code>..%2f/static/js/jquery.min.js</code>路径,<br>所以就会读取到了<code>http://39.107.33.96:20000/index.php/add</code> 这个路径里的内容。</p>
 <p>这道题中的Write article功能, 对Content中的特殊字符进行编码。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="built_in">String</span>.fromCharCode(<span class="number">97</span>,<span class="number">108</span>,<span class="number">101</span>,<span class="number">114</span>,<span class="number">116</span>,<span class="number">40</span>,<span class="number">39</span>,<span class="number">49</span>,<span class="number">39</span>,<span class="number">41</span>,<span class="number">59</span>))</span><br></pre></td></tr></table></figure></p>
